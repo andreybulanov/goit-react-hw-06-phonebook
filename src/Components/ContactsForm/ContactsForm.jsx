@@ -1,8 +1,10 @@
 import { Component } from "react";
+import { connect } from 'react-redux';
+import { addContact } from '../../Store/actions';
 import { Form, Label, Input } from './ContactsForm.styled';
 import { Button } from '../Buttons/Buttons.styled';
 
-export class ContactsForm extends Component {
+class ContactsForm extends Component {
     state = {
         name: "",
         number: "",
@@ -55,3 +57,14 @@ export class ContactsForm extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    contacts: state.contacts.item,
+})
+ 
+
+const mapDispatchToProps = dispatch => ({
+    onSubmit: data => dispatch(addContact(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsForm);

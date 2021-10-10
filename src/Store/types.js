@@ -1,6 +1,6 @@
-export default {
-  ADD: 'contacts/add',
-  SHOW: 'contacts/show',
-  REMOVE: 'contacts/remove',
-  HANDLE_FILTER: 'contacts/handleFilter',
-};
+const ADD = 'contacts/add';
+const SHOW = 'contacts/show';
+const REMOVE = 'contacts/remove';
+const HANDLE_FILTER = 'contacts/handleFilter';
+
+export { ADD, SHOW, REMOVE, HANDLE_FILTER };

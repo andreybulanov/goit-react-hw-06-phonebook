@@ -1,7 +1,9 @@
+import { connect } from 'react-redux';
+import { removeContact } from '../../Store/actions';
 import { List, ListItem } from "./ContactsList.styled";
 import { Button } from '../Buttons/Buttons.styled';
 
-export const ContactsList = ({ contacts, deleteId }) => {
+function ContactsList ({ contacts, deleteId }) {
     return (
         <div>
             <List>
@@ -20,3 +22,18 @@ export const ContactsList = ({ contacts, deleteId }) => {
         </div>
     );
 }
+
+const nameFilter = (state) => {
+    return state.contacts.items.filter((contact) =>
+        contact.name.toLowerCase().includes(state.contacts.filter.toLowerCase()));
+};
+
+const mapStateToProps = (state) => ({
+    contacts: nameFilter(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+    deleteId: (id) => dispatch(removeContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
