@@ -1,21 +1,14 @@
-import { ADD, REMOVE, HANDLE_FILTER } from './types';
+import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-export const addContact = data => ({
-  types: ADD,
+export const addContact = createAction('contact/ADD', ({ name, number }) => ({
   payload: {
     id: uuidv4(),
-    name: data.name,
-    number: data.number,
+    name,
+    number,
   },
-});
+}));
 
-export const removeContact = id => ({
-  types: REMOVE,
-  payload: id,
-});
+export const removeContact = createAction('contact/REMOVE');
 
-export const filterContact = value => ({
-  types: HANDLE_FILTER,
-  payload: value,
-});
+export const filterContact = createAction('contact/HANDLE_FILTER');
